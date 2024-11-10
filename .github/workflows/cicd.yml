@@ -10,23 +10,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-      
+      - name: Install required packages
+        run: make install
+
       - name: Format code
         run: make format
-
-      - name: Check code
-        run: make check
-      
-      - name: Build binary artifact
-        run: cargo build --release
-      
-      - name: Upload binary artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Rust Binary Artifact
-          path: target/release/peter_min_data_engineering_project7
